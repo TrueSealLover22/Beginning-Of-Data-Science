@@ -8,13 +8,13 @@ import pandas as pd
 import seaborn as sns
 
 
-BASE_DIR = Path(__file__).resolve().parent
-DATA_PATH = BASE_DIR / "data" / "student_dropout_risk_2026.csv"
-OUTPUT_DIR = BASE_DIR / "plots"
+DATA_DIR = Path(__file__).resolve().parent / "data"
+# create the file based on input from /data
+OUTPUT_DIR = Path(__file__).resolve().parent / "plots"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 sns.set_theme(style="whitegrid", palette="deep")
-df = pd.read_csv(DATA_PATH)
+df = pd.read_csv(DATA_DIR / "student_dropout_risk_2026.csv")
 target = "dropout"
 numeric = df.select_dtypes(include=np.number)
 features = [c for c in ["attendance_rate", "assignments_submitted_rate", "gpa_semester_1",
